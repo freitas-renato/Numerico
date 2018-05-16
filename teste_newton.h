@@ -8,11 +8,16 @@
 #define e M_E
 
 // Primeiro teste
-matrix_t* constroiJ1(matrix_t* A, vetor_t* x);
-vetor_t* constroiF1(vetor_t* b, vetor_t *x);
+matrix_t* constroiJ1(vetor_t* x);
+vetor_t* constroiF1(vetor_t *x);
 
 // Segundo teste
-matrix_t* constroiJ2(matrix_t* A, vetor_t* x);
-vetor_t* constroiF2(vetor_t* b, vetor_t *x);
+matrix_t* constroiJ2(vetor_t* x);
+vetor_t* constroiF2(vetor_t *x);
+
+// Terceiro teste
+matrix_t* constroiJ3(vetor_t* x);
+vetor_t* constroiF3(vetor_t *x);
+
 
 #endif
