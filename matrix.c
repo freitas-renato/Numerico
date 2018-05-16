@@ -32,23 +32,6 @@ matrix_t* new_matrix(int a, int b) {
     return new_mat;
 }
 
-vector_t* new_vector(int a) {
-    vector_t* new_vec;
-
-    if (a <= 0) {
-        printf("Vetor precisa ter tamanho positivo\n");
-        exit(-1);
-    }
-
-    new_vec = (vector_t*)calloc((size_t)1, sizeof(vector_t));
-
-    new_vec->tamanho = a;
-
-    new_vec->data = (double*)calloc(new_vec->tamanho, sizeof(double));
-
-    return new_vec;
-}
-
 void copy_matrix(matrix_t* A, matrix_t* B) {
     if ((A->lin != B->lin) || (A->col != B->col)) {
         printf("Matrizes precisam ter as mesmas dimensões\n");
@@ -69,6 +52,7 @@ void print_matrix(matrix_t* mat) {
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 void change_two_lines(matrix_t* mat, int l1, int l2) {
@@ -94,11 +78,10 @@ matrix_t* multiply(matrix_t* A, matrix_t* B) {
     return result;
 }
 
-matrix_t* lu_decomposition(matrix_t* mat, double* p) {
+matrix_t* lu_decomposition(matrix_t* mat, vetor_t* p) {
     int n = mat->lin;
     int l = 0;
-    double max, max_ant = 0;
-    double soma = 0;
+    double max = 0;
     // printf("%d\n", mat->lin);
 
     matrix_t* lu = new_matrix(mat->lin, mat->col);
@@ -113,28 +96,25 @@ matrix_t* lu_decomposition(matrix_t* mat, double* p) {
     for (int k = 0; k < n; k++) {
         l = 0;
         for (int i = k; i < n; i++) {
-            soma = 0;
-
             for (int j = 0; j < k; j++) {
                 lu->data[i][k] -= lu->data[i][j] * lu->data[j][k];
             }
         }
 
         // L
-        max = 0, max_ant = -1;
+        max = 0;
         for (int i = k; i < n; i++) {
             if (mod(lu->data[i][k]) > max) {
                 max = lu->data[i][k];
                 l = i;
             }
         }
-        p[k] = l;
-        if (k != (int)p[k]) {
-            change_two_lines(lu, k, (int)p[k]);
+        p->data[k] = l;
+        if (k != (int)p->data[k]) {
+            change_two_lines(lu, k, (int)p->data[k]);
         }
 
         for (int j = k + 1; j < n; j++) {
-            soma = 0;
             for (int i = 0; i < k; i++) {
                 lu->data[k][j] -= lu->data[k][i] * lu->data[i][j];
             }
@@ -143,40 +123,41 @@ matrix_t* lu_decomposition(matrix_t* mat, double* p) {
     }
 
     // Imprime vetor p
+    printf("p: ");
     for (int i = 0; i < n; i++) {
-        printf("%.1lf ", p[i]);
+        printf("%.1lf ", p->data[i]);
     }
     printf("\n \n");
 
     return lu;
 }
 
-void solve(matrix_t* A, double* x, double* b, double* p) {
+void solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
     int n = A->col;
     // Permuta b
     double aux;
     for (int i = n - 1; i >= 0; i--) {
-        if (i != (int)p[i]) {
-            aux = b[i];
-            b[i] = b[(int)p[i]];
-            b[(int)p[i]] = aux;
+        if (i != (int)p->data[i]) {
+            aux = b->data[i];
+            b->data[i] = b->data[(int)p->data[i]];
+            b->data[(int)p->data[i]] = aux;
         }
     }
 
     for (int i = 0; i < n; i++) {
-        x[i] = b[i];
+        x->data[i] = b->data[i];
         // printf("%lf ", x[i]);
         for (int k = 0; k < i; k++) {
-            x[i] -= A->data[i][k] * x[k];
+            x->data[i] -= A->data[i][k] * x->data[k];
         }
     }
 
     for (int i = n - 1; i >= 0; i--) {
         for (int k = i + 1; k < n; k++) {
-            x[i] -= A->data[i][k] * x[k]; 
+            x->data[i] -= A->data[i][k] * x->data[k]; 
         }
         
-        x[i] /= A->data[i][i];
+        x->data[i] /= A->data[i][i];
     }
 
     
