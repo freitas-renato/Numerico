@@ -69,3 +69,10 @@ double mod_vetor(vetor_t* A) {
 
     return sqrt(sum);
 }
+
+void free_vetor(vetor_t* vet) {
+    vet->tam = 0;
+    free(vet->data);
+    free(vet);
+    vet = (vetor_t*)NULL;
+}

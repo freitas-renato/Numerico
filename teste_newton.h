@@ -19,5 +19,7 @@ vetor_t* constroiF2(vetor_t *x);
 matrix_t* constroiJ3(vetor_t* x);
 vetor_t* constroiF3(vetor_t *x);
 
+vetor_t* newton_teste(int n);
+
 
 #endif

@@ -18,4 +18,6 @@ vetor_t* soma_vetores(vetor_t* A, vetor_t* B);
 
 double mod_vetor(vetor_t* A);
 
+void free_vetor(vetor_t* vet);
+
 #endif

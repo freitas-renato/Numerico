@@ -48,7 +48,7 @@ void copy_matrix(matrix_t* A, matrix_t* B) {
 void print_matrix(matrix_t* mat) {
     for (int i = 0; i < mat->lin; i++) {
         for (int j = 0; j < mat->col; j++) {
-            printf ("%.3e ", mat->data[i][j]);
+            printf ("%.3lf \t", mat->data[i][j]);
         }
         printf("\n");
     }
@@ -161,4 +161,42 @@ void solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
     }
 
     
+}
+
+void free_matrix(matrix_t* mat) {
+    for (int i = 0; i < mat->lin; i++) {
+        free(mat->data[i]);
+    }
+
+    mat->lin = 0;
+    mat->col = 0;
+    free(mat->data);
+    free(mat);
+    mat = (matrix_t*)NULL;
+}
+
+matrix_t* read_file(char* nome) {
+    matrix_t* new_mat;
+    int num = 0;
+    FILE* file = fopen(nome, "r");
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
+        exit(-1);
+    }
+
+    if(fscanf(file, "%d ", &num) < 1) {
+        printf("Falha ao ler o arquivo\n");
+        exit(-1);
+    }
+
+    new_mat = new_matrix(num, 5);
+
+    for (int i = 0; i < num; i++) {
+        for (int j = 0; j < 5; j++) {
+            fscanf(file, "%lf ", &new_mat->data[i][j]);
+        }
+    }
+
+    return new_mat;
 }
