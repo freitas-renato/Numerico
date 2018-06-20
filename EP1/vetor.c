@@ -8,18 +8,26 @@ vetor_t* new_vetor(int a) {
         exit(-1);
     }
 
-    new_vet = (vetor_t*)calloc((size_t)1, sizeof(vetor_t));
+    if ((new_vet = (vetor_t*)calloc((size_t)1, sizeof(vetor_t))) == (vetor_t*)NULL) {
+        printf("Erro na alocacao do vetor\n");
+        exit(-1);
+    }
 
     new_vet->tam = a;
 
-    new_vet->data = (double*)calloc(new_vet->tam, sizeof(double));
+
+    if ((new_vet->data = (double*)calloc(new_vet->tam, sizeof(double))) == (double*)NULL) {
+        free(new_vet);
+        printf("Erro ao alocar vetor\n");
+        exit(-1);
+    }
 
     return new_vet;
 }
 
 void print_vetor(vetor_t* vetor) {
     for (int i = 0; i < vetor->tam; i++) {
-        printf("%.2e ", vetor->data[i]);
+        printf("%10.5e ", vetor->data[i]);
     }
     printf("\n\n");
 }

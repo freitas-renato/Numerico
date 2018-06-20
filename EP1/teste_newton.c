@@ -137,7 +137,7 @@ vetor_t* newton_teste(int n) {
                 // LU a partir de J
                 lu = lu_decomposition(J, p);
                 // Resolve em c usando a matrix LU: J*c = -F
-                solve(lu, c, F, p);
+                c = solve(lu, c, F, p);
 
                 // x = x + c
                 x = soma_vetores(x, c);
@@ -178,7 +178,7 @@ vetor_t* newton_teste(int n) {
                 // LU a partir de J
                 lu = lu_decomposition(J, p);
                 // Resolve em c usando a matrix LU: J*c = -F
-                solve(lu, c, F, p);
+                c = solve(lu, c, F, p);
 
                 // x = x + c
                 x = soma_vetores(x, c);
@@ -220,7 +220,7 @@ vetor_t* newton_teste(int n) {
                 // LU a partir de J
                 lu = lu_decomposition(J, p);
                 // Resolve em c usando a matrix LU: J*c = -F
-                solve(lu, c, F, p);
+                c = solve(lu, c, F, p);
 
                 // x = x + c
                 x = soma_vetores(x, c);

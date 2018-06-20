@@ -48,7 +48,7 @@ void copy_matrix(matrix_t* A, matrix_t* B) {
 void print_matrix(matrix_t* mat) {
     for (int i = 0; i < mat->lin; i++) {
         for (int j = 0; j < mat->col; j++) {
-            printf ("%.3lf \t", mat->data[i][j]);
+            printf ("%10.3e \t", mat->data[i][j]);
         }
         printf("\n");
     }
@@ -102,7 +102,7 @@ matrix_t* lu_decomposition(matrix_t* mat, vetor_t* p) {
         }
 
         // L
-        max = 0;
+        max = -1;
         for (int i = k; i < n; i++) {
             if (mod(lu->data[i][k]) > max) {
                 max = lu->data[i][k];
@@ -119,7 +119,7 @@ matrix_t* lu_decomposition(matrix_t* mat, vetor_t* p) {
                 lu->data[k][j] -= lu->data[k][i] * lu->data[i][j];
             }
             lu->data[j][k] /= lu->data[k][k];
-        }        
+        }
     }
 
     // Imprime vetor p
@@ -132,11 +132,15 @@ matrix_t* lu_decomposition(matrix_t* mat, vetor_t* p) {
     return lu;
 }
 
-void solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
+vetor_t* solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
     int n = A->col;
-    // Permuta b
+    
+    if (x == (vetor_t*)NULL) {
+        x = new_vetor(b->tam);
+    }
+    
     double aux;
-    for (int i = n - 1; i >= 0; i--) {
+    for (int i = 0; i < p->tam; i++) {
         if (i != (int)p->data[i]) {
             aux = b->data[i];
             b->data[i] = b->data[(int)p->data[i]];
@@ -144,7 +148,7 @@ void solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
         }
     }
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < x->tam; i++) {
         x->data[i] = b->data[i];
         // printf("%lf ", x[i]);
         for (int k = 0; k < i; k++) {
@@ -152,15 +156,14 @@ void solve(matrix_t* A, vetor_t* x, vetor_t* b, vetor_t* p) {
         }
     }
 
-    for (int i = n - 1; i >= 0; i--) {
-        for (int k = i + 1; k < n; k++) {
+    for (int i = x->tam - 1; i >= 0; i--) {
+        for (int k = i + 1; k < x->tam; k++) {
             x->data[i] -= A->data[i][k] * x->data[k]; 
         }
         
         x->data[i] /= A->data[i][i];
     }
-
-    
+    return x;
 }
 
 void free_matrix(matrix_t* mat) {
