@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 # VS Code folders
-.vs/
-.vscode/
+.vs/*
+.vscode/*
