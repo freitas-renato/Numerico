@@ -4,4 +4,7 @@
 #include <math.h>
 #include <complex.h>
 
-double complex fftrec(double complex c, double complex f, int n, int dir);
+#include "vetor.h"
+
+void fft(vetor_t* c, vetor_t* f, int dois_n, int dir);
+void fftrec(vetor_t* c, vetor_t* f, int n, int dir);
