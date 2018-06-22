@@ -3,7 +3,6 @@
 #include "vetor.h"
 
 int main(void) {
-    teste1();
-
+    teste2();
     return 0;
 }
