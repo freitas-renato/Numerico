@@ -92,3 +92,55 @@ void free_vetor(vetor_t* vet) {
     free(vet);
     vet = (vetor_t*)NULL;
 }
+
+vetor_t* read_file(char* nome) {
+    vetor_t* vetor;
+    double total_dados = 0;
+    double numero;
+    double real, imag;
+    
+    FILE* arquivo = fopen(nome, "r");
+    int file_position = 0;
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo \n");
+        exit(-1);
+    }
+
+    /*
+      Ignora as duas primeiras linhas do arquivo:
+        Sample rate e channels
+    */
+    char ignore[100];
+    for (int i = 0; i < 2; i++) {
+        fgets(ignore, 100, arquivo);
+    }
+
+    file_position = ftell(arquivo);
+    while (fscanf(arquivo, "%lf", &numero) > 0) {
+        total_dados++;
+    }
+
+    vetor = new_vetor(total_dados/2);
+
+    fseek(arquivo, file_position, SEEK_SET);
+    for (int i = 0; i < vetor->tam; i++) {
+        fscanf(arquivo, "%lf %lf", &real, &imag);
+        vetor->data[i] = real + imag*I;
+    }
+
+    printf("Total de numeros: %lf\n", total_dados/2 + 2);
+    fclose(arquivo);
+
+    return vetor;
+}
+
+void write_to_file(char* nome, vetor_t* vetor) {
+    FILE* arquivo = fopen(nome, "w");
+
+    for (int i = 0; i < vetor->tam; i++) {
+        fprintf(arquivo, "%10.8e \t\t %10.8e\n", creal(vetor->data[i]), cimag(vetor->data[i]));
+    }
+
+    fclose(arquivo);
+}

@@ -21,4 +21,7 @@ double mod_vetor(vetor_t* A);
 
 void free_vetor(vetor_t* vet);
 
+vetor_t* read_file(char* arquivo);
+void write_to_file(char* nome, vetor_t* vetor);
+
 #endif
