@@ -36,10 +36,10 @@ int main(void) {
             printf("Arquivo %s aberto, fazer a transformada lenta\n", arquivo);
             
             printf("Tempo de execucao: %lf segundos\n", fft(vet_c, vet_f, vet_c->tam, 1));
-            write_to_file("saida_coef.txt", vet_c);
+            write_to_file("./out/saida_coef.txt", vet_c);
             
             printf("Tempo de execucao: %lf segundos\n", fft(vet_c, vet_f, vet_c->tam, 0));
-            write_to_file("saida_func.txt", vet_f);
+            write_to_file("./out/saida_func.txt", vet_f);
 
             printf("Arquivos de saida gerados.\n");
         break;
@@ -48,10 +48,10 @@ int main(void) {
             printf("Arquivo %s aberto, fazer FFT recursiva\n", arquivo);
             
             printf("Tempo de execucao: %lf segundos\n", fftrec(vet_c, vet_f, vet_c->tam/2, 1));
-            write_to_file("saida_coef.txt", vet_c);
+            write_to_file("./out/saida_coef.txt", vet_c);
             
             printf("Tempo de execucao: %lf segundos\n", fftrec(vet_blabla, vet_c, vet_c->tam/2, 0));
-            write_to_file("saida_func.txt", vet_blabla);
+            write_to_file("./out/saida_func.txt", vet_blabla);
 
             printf("Arquivos de saida gerados.\n");
         break;
