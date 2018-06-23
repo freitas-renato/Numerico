@@ -5,5 +5,6 @@
 
 #include "vetor.h"
 
-void fft(vetor_t* c, vetor_t* f, int dois_n, int dir);
-void fftrec(vetor_t* c, vetor_t* f, int n, int dir);
+// Funcoes retornam o tempo de execucao
+double fft(vetor_t* c, vetor_t* f, int dois_n, int dir);
+double fftrec(vetor_t* c, vetor_t* f, int n, int dir);

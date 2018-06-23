@@ -1,8 +1,10 @@
 #include <math.h>
 #include <complex.h>
+#include <time.h>
+
 #include "fft.h"
 
-void fft(vetor_t* c, vetor_t* f, int dois_n, int dir) {
+double fft(vetor_t* c, vetor_t* f, int dois_n, int dir) {
     // int dirr;
     // if (dir)
     // dirr = 1;
@@ -10,9 +12,10 @@ void fft(vetor_t* c, vetor_t* f, int dois_n, int dir) {
     // dirr = 0;
     int j, k = 0;
     double complex aux = 0;
+    clock_t start, end;
     
+    start = clock();
     switch(dir){
-
         case 0:
             // INVERSA
             for(j = 0; j <= dois_n - 1; j++){
@@ -44,10 +47,13 @@ void fft(vetor_t* c, vetor_t* f, int dois_n, int dir) {
             exit(-1);
         break;
     }
+    end = clock();
+    
+    return (double)(end - start) / CLOCKS_PER_SEC;
  
 }
 
-void fftrec(vetor_t* c, vetor_t* f, int n, int dir) {
+double fftrec(vetor_t* c, vetor_t* f, int n, int dir) {
 
     vetor_t* even = new_vetor(n);
     vetor_t* odd = new_vetor(n);
@@ -55,7 +61,9 @@ void fftrec(vetor_t* c, vetor_t* f, int n, int dir) {
     vetor_t* fo = new_vetor(n);
     
     double complex eij;
+    clock_t start, end;
 
+    start = clock();
     if (n == 1) {
         c->data[0] = f->data[0] + f->data[1];
         c->data[1] = f->data[0] - f->data[1];
@@ -81,11 +89,13 @@ void fftrec(vetor_t* c, vetor_t* f, int n, int dir) {
             c->data[j+n] = even->data[j] - eij * odd->data[j];
 
             if (dir){
-            c->data[j] /= 2*n;
-            c->data[j+n] /= 2*n;
+                c->data[j] /= 2*n;
+                c->data[j+n] /= 2*n;
             }
         }
     }
+    end = clock();
+    return (double)(end - start) / CLOCKS_PER_SEC;
 }
 
   
