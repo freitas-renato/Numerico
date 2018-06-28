@@ -33,9 +33,9 @@ vetor_t* new_vetor(int a) {
 // }
 
 void print_vetor(vetor_t* vetor) {
-    printf("vetor: ");
+    printf("vetor: \n");
     for (int i = 0; i < vetor->tam; i++) {
-        printf("%.2f %.2fi\n", creal(vetor->data[i]), cimag(vetor->data[i]));
+        printf("%8.2f %8.2fi\n", creal(vetor->data[i]), cimag(vetor->data[i]));
     }
     printf ("\n\n");
 }
@@ -129,7 +129,7 @@ vetor_t* read_file(char* nome) {
         vetor->data[i] = real + imag*I;
     }
 
-    printf("Total de numeros: %lf\n", total_dados/2 + 2);
+    printf("Total de dados no arquivo: %.1lf\n", total_dados/2 + 2);
     fclose(arquivo);
 
     return vetor;

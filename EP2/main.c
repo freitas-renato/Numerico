@@ -9,8 +9,42 @@ int main(void) {
     char* dados[256];
     char* arquivo[256];
     int opcao;
+    char ini;
     vetor_t* vet_f;
     vetor_t* vet_c;
+
+    printf("Realizar testes iniciais? [s/n]: ");
+    scanf("%c", &ini);
+
+    if (ini == 's') {
+        printf("Escolha o numero do teste (1, 2, 3): ");
+        scanf("%d", &opcao);
+
+        switch(opcao) {
+            case 1:
+                printf("\nVerificacao dos algoritmos implementados\n");
+                printf("F = (5, -1, 3, 1)\n");
+                teste1();
+                teste2();
+
+                return 0;
+            break;
+
+            case 2:
+                printf("\nVerificacao dos algoritmos implementados\n");
+                printf("F = (6, 2, 5, 2, 11, 2, 8, 8)\n");
+                teste3();
+
+                return 0;
+            break;
+
+            default:
+                printf("Teste inexistente :( \n");
+                return 0;
+            break;
+
+        }
+    }
 
     printf("Arquivos devem estar na pasta 'dados_sons'\n");
     printf("Digite o nome do arquivo .dat a ser analisado: ");
@@ -60,12 +94,8 @@ int main(void) {
             printf("abrir arquivo %s e fazer a FFTPACK4\n", arquivo);
         break;
 
-        case 3:
-            teste2();
-        break;
-
         default:
-            printf("opcao invalida \n");
+            printf("Opcao invalida :( \n");
         break;
     }
 
