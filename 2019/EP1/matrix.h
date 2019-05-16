@@ -12,8 +12,6 @@ using namespace std;
 typedef vector<vector<double>> matrix_t;
 
 void print_matrix(matrix_t M);
-// void rot_givens(int columns, int i, int j, int k);
-// void calc_c_s(int i, int j, int k);
-
+matrix_t matrix_multiply(matrix_t A, matrix_t B);
 
 #endif  // _MATRIX_H_
