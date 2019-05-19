@@ -25,14 +25,14 @@ void System::rot_givens(int i, int j, int k) {
     }
 
     // Rotação de Givens em W
-    for (int r = 0; r < W[i].size(); r++) {
+    for (int r = 0; r < (int)W[i].size(); r++) {
         aux = (c * this->W[i][r]) - (s * this->W[j][r]);
         this->W[j][r] = (s * this->W[i][r]) + (c * this->W[j][r]);
         this->W[i][r] = aux;
     }
 
     // Rotação de Givens em A
-    for (int r = 0; r < A[i].size(); r++) {
+    for (int r = 0; r < (int)A[i].size(); r++) {
         aux = (c * this->A[i][r]) - (s * this->A[j][r]);
         this->A[j][r] = (s * this->A[i][r]) + (c * this->A[j][r]);
         this->A[i][r] = aux;
@@ -40,10 +40,10 @@ void System::rot_givens(int i, int j, int k) {
 }
 
 matrix_t System::solve() {
-    matrix_t H(W[0].size(), vector<double>(A[0].size(), 0));
+    matrix_t H((int)W[0].size(), vector<double>(A[0].size(), 0));
     double soma = 0;
 
-    for (int k = 0; k < W[0].size(); k++) {
+    for (int k = 0; k < (int)W[0].size(); k++) {
         for (int j = (int)W.size() - 1; j >= k + 1; j--) {
             int i = j - 1;
             if (W[j][k] != 0) {
@@ -53,12 +53,12 @@ matrix_t System::solve() {
     }
 
     for (int k = (int)W[0].size() - 1; k >= 0; k--) {
-        for (int j = 0; j < A[0].size(); j++) {
+        for (int j = 0; j < (int)A[0].size(); j++) {
             soma = 0;
-            for (int i = k; i < W[0].size(); i++) {
+            for (int i = k; i < (int)W[0].size(); i++) {
                 soma += W[k][i] * H[i][j];
             }
-            H[k][j] = (A[k][j] - soma) / W[k][k];
+            H[k][j] = (W[k][k] != 0) ? ((A[k][j] - soma) / W[k][k]) : (A[k][j] - soma);
         }
     }
 
