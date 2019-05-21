@@ -13,7 +13,7 @@ void primeira_tarefa() {
     cin >> n;
     cout << "Digite m: ";
     cin >> m;
-    // matrix_t W(n, vector<double>(m, 0));
+    
     matrix_t W;
     matrix_t x(m, vector<double>(1, 0));
     matrix_t b(n, vector<double>(1, 0));
@@ -129,13 +129,15 @@ void primeira_tarefa() {
     
     System* syst;
     if (choice == 'a' || choice == 'b') {
+        // Wx = b
         syst = new System(W, b);
     } else {
+        // WH = A
         syst = new System(W, A);
     }
 
     matrix_t H;
-
+    // Solucao do sistema 
     H = syst->solve();
 
     cout << endl << endl << endl << "Solucao: " << endl;
@@ -164,7 +166,7 @@ void segunda_tarefa() {
             cin >> A[i][j]; 
         }
     }
-
+    // Decomposicao da matriz A em WH
     matrix_decompose(A, W, H);
 
     cout << "\n\nMatriz A original: " << endl;

@@ -22,7 +22,6 @@ public:
     void calc_H();
     void machine();
     void analise();
-    
 
 private:
     matrix3d_t A;
