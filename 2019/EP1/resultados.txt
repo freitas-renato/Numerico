@@ -14,8 +14,26 @@ Percentual de acertos do dígito 7: 87.743%
 Percentual de acertos do dígito 8: 81.109%
 Percentual de acertos do dígito 9: 87.413%
 
------
 
+-----
+ndig_treino: 100
+ntest: 10000
+p: 10
+
+Percentual de acertos: 90.16 %
+Percentual de acertos do dígito 0: 97.9592 %
+Percentual de acertos do dígito 1: 99.4714 %
+Percentual de acertos do dígito 2: 89.2442 %
+Percentual de acertos do dígito 3: 85.6436 %
+Percentual de acertos do dígito 4: 86.0489 %
+Percentual de acertos do dígito 5: 85.8744 %
+Percentual de acertos do dígito 6: 95.6159 %
+Percentual de acertos do dígito 7: 91.7315 %
+Percentual de acertos do dígito 8: 80.3901 %
+Percentual de acertos do dígito 9: 88.0079 %
+
+
+-----
 ndig_treino: 100
 ntest: 10000
 p: 15
@@ -103,3 +121,21 @@ Percentual de acertos do dígito 6: 96.5553 %
 Percentual de acertos do dígito 7: 88.716 %
 Percentual de acertos do dígito 8: 87.577 %
 Percentual de acertos do dígito 9: 86.7195 %
+
+
+----
+ndig_treino: 4000
+ntest: 10000
+p: 10
+
+Percentual de acertos: 93.46 %
+Percentual de acertos do dígito 0: 98.2653 %
+Percentual de acertos do dígito 1: 99.4714 %
+Percentual de acertos do dígito 2: 92.0543 %
+Percentual de acertos do dígito 3: 92.1782 %
+Percentual de acertos do dígito 4: 93.0754 %
+Percentual de acertos do dígito 5: 89.1256 %
+Percentual de acertos do dígito 6: 96.8685 %
+Percentual de acertos do dígito 7: 91.537 %
+Percentual de acertos do dígito 8: 89.2197 %
+Percentual de acertos do dígito 9: 91.774 %
