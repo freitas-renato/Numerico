@@ -77,8 +77,9 @@ void Train::get_A() {
 void Train::calc_Wd() {
     for (int i = 0; i < 10; i++) {
         matrix_t H(this->p, vector<double>(this->m, 0));
+        cout << "Calculando Wd para o digito " << i << "..." << endl;
         matrix_decompose(A[i], Wd[i], H);
-        cout << "Matriz " << i << "ok." << endl;
+        cout << "Matriz Wd " << i << " salva." << endl << endl;
     }
 }
 
@@ -137,16 +138,17 @@ void Train::machine() {
 
     cout << "Arquivo done." << endl << endl;
 
+    cout << "Classificando imagens..." << endl << endl;
+
     Renatinho = Luquinhas;
 
     matrix_t soma(10, vector<double>(ntest, 0)); // Vetor para soma das colunas
     
     for (int e = 0; e < 10; e++) {
-
         System Flavinha(Wd[e], Luquinhas);
+
         H[e] = Flavinha.solve();
         E[e] = matrix_subtract(Renatinho, matrix_multiply(Wd[e], H[e]));
-        //🤦‍♀️🤬🤡🙊🙈👀💩
         
         for (int i = 0; i < 784; i++) {
             for (int j = 0; j < ntest; j++) {
@@ -169,12 +171,13 @@ void Train::machine() {
     }
 
     ofstream mand;
-    mand.open("./mandragora.txt");
+    mand.open("./test_result.txt");
 
     for (int i = 0; i < ntest; i++) {
-        cout << digi[i] << endl;
+        // cout << digi[i] << endl;
         mand << digi[i] << endl;
     }
+    cout << "Resultado das classificações no arquivo \"test_result.txt\"" << endl << endl;
 
     mand.close();
 }
@@ -212,10 +215,10 @@ void Train::analise() {
     }
 
 
-    cout << "Percentual de acertos: " << certo/(double)ntest << endl;
+    cout << "Percentual de acertos: " << certo/(double)ntest * 100 << " %" << endl;
 
     for (int j = 0; j < 10; j++){
-        cout << "Percentual de acertos do dígito " << j << ": "<< acertos[j]/total[j] * 100 << "%"<< endl;
+        cout << "Percentual de acertos do dígito " << j << ": "<< acertos[j]/total[j] * 100 << " %"<< endl;
     }
 
 }

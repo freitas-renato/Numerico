@@ -14,9 +14,9 @@ int main(void) {
     int p, m, ntest;
     
     cout << R"(Escolha a tarefa a ser executada:
-         😢 😜- Rotacao de Givens(1)
-         ✌ 😂- Fatoracao de Matriz Nao Negativa(2)
-         😎  - Tarefa Principal - Machine Learning(3))" << endl;;
+        1 - Rotacao de Givens
+        2 - Fatoracao de Matriz Nao Negativa
+        3 - Tarefa Principal - Machine Learning)" << endl;;
     cin >> tarefa;
 
     switch(tarefa) {
@@ -42,7 +42,7 @@ int main(void) {
             treino.calc_Wd();
             treino.machine();
             treino.analise();
-            cout << "Cabou 👌 🔝";
+            // cout << "Cabou 👌 🔝";
             break;
         }
               

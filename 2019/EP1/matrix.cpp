@@ -65,8 +65,8 @@ void matrix_decompose(matrix_t &A, matrix_t &W, matrix_t &H) {
         }
     }
 
-    cout << "Matriz W: " << endl << endl;
-    print_matrix(W);
+    // cout << "Matriz W: " << endl << endl;
+    // print_matrix(W);
 
     // Salva matriz A
     Copia = A;
