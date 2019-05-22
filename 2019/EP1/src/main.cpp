@@ -4,11 +4,11 @@
  *
  * Exercicio Programa 1
  *
- * Lucas Sorensen Paes          9349051     <lucas.paes@usp.br>
+ * Lucas Sorensen Paes          9836919     <lucas.paes@usp.br>
  * Renato de Oliveira Freitas   9837708     <renato.freitas@usp.br>
  * 
  * 
- * 04/2019
+ * 05/2019
  */
 
 #include <iostream>
@@ -56,7 +56,7 @@ int main(void) {
             treino.calc_Wd();
             treino.classify();
             treino.analise();
-            // cout << "Cabou 👌 🔝";
+            cout << "Cabou 👌 🔝";
             break;
         }
               
