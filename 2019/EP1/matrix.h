@@ -46,10 +46,9 @@ matrix_t matrix_subtract(matrix_t A, matrix_t B);
  * @brief   Realiza a fatoração QR de uma matriz
  * @param   A       Matriz a ser decomposta (n x m)
  * @param   W       Matriz com tamanho n x p
- * @param   W       Matriz com tamanho p x m
+ * @param   H       Matriz com tamanho p x m
  * @retval  none
  */
 void matrix_decompose(matrix_t &A, matrix_t &W, matrix_t &H);
-
 
 #endif  // _MATRIX_H_

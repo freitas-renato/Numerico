@@ -58,6 +58,7 @@ matrix_t System::solve() {
             for (int i = k; i < (int)W[0].size(); i++) {
                 soma += W[k][i] * H[i][j];
             }
+            // Verificação para não ocorrer divisão por 0
             H[k][j] = (W[k][k] != 0) ? ((A[k][j] - soma) / W[k][k]) : (A[k][j] - soma);
         }
     }

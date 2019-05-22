@@ -83,7 +83,7 @@ void Train::calc_Wd() {
     }
 }
 
-void Train::machine() {
+void Train::classify() {
     matrix_t Luquinhas(784, vector<double>(ntest, 0));
     matrix_t Renatinho(784, vector<double>(ntest, 0));
     matrix3d_t H(10, matrix_t(this->p, vector<double>(ntest, 0)));

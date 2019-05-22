@@ -7,7 +7,8 @@
 #include "system.h"
 #include "tarefas.h"
 #include "train.h"
-// using namespace std;
+
+using namespace std;
 
 int main(void) {  
     int tarefa;
@@ -40,7 +41,7 @@ int main(void) {
             Train treino(m, p, ntest);
             treino.get_A();
             treino.calc_Wd();
-            treino.machine();
+            treino.classify();
             treino.analise();
             // cout << "Cabou 👌 🔝";
             break;
