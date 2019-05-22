@@ -170,16 +170,16 @@ void Train::classify() {
         }
     }
 
-    ofstream mand;
-    mand.open("./test_result.txt");
+    ofstream result;
+    result.open("./test_result.txt");
 
     for (int i = 0; i < ntest; i++) {
         // cout << digi[i] << endl;
-        mand << digi[i] << endl;
+        result << digi[i] << endl;
     }
     cout << "Resultado das classificações no arquivo \"test_result.txt\"" << endl << endl;
 
-    mand.close();
+    result.close();
 }
 
 void Train::analise() {
